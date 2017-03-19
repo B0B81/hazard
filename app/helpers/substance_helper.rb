@@ -1,0 +1,2 @@
+module SubstanceHelper
+end

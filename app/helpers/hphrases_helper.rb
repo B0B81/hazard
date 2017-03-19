@@ -1,0 +1,2 @@
+module HphrasesHelper
+end

@@ -1,0 +1,7 @@
+= simple_form_for(@hphrase) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :title, tooltip: "Must be as it appears in the BANK STATEMENT"
+    = f.input :description, tooltip: "Must be as it appears in the BANK STATEMENT"
+  .form-actions
+    = f.button :submit

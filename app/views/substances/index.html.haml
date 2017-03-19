@@ -1,0 +1,19 @@
+= form_tag(substances_path, method: :get) do
+  .row
+    .col-xs-3
+      .input-group
+        = text_field_tag :term, params[:term], placeholder: t('Search')+('...'), class: "form-control"
+        .input-group-btn
+          = button_tag 'Search', name: nil, class: "btn btn-default btn" do
+            %span.glyphicon.glyphicon-search
+
+%br/
+%table.table
+  %thead
+    %tr
+      %th title
+      %th date
+      %th application
+  %tbody
+    - @substance.each do |substance|
+      = render 'substance_row', substance: substance

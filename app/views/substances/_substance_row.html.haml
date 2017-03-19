@@ -1,0 +1,7 @@
+%tr
+  %td= substance.title
+  %td= substance.date
+  %td= substance.application
+  %td
+    = link_to t('edit'), edit_substance_path(substance), class: "btn btn-default btn-xs"
+    = link_to t('delete'), substance_path(substance), method: :delete, data: { confirm: t('are_you_sure') }, class: "btn btn-default btn-xs"
