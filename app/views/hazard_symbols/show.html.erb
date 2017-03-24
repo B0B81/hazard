@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @hazard_symbol.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @hazard_symbol.image %>
+</p>
+
+<%= link_to 'Edit', edit_hazard_symbol_path(@hazard_symbol) %> |
+<%= link_to 'Back', hazard_symbols_path %>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hazard Symbols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hazard_symbols.each do |hazard_symbol| %>
+      <tr>
+        <td><%= hazard_symbol.title %></td>
+        <td><%= hazard_symbol.code %></td>
+        <td><%= hazard_symbol.description %></td>
+        <td><%= hazard_symbol.image %></td>
+        <td><%= link_to 'Show', hazard_symbol %></td>
+        <td><%= link_to 'Edit', edit_hazard_symbol_path(hazard_symbol) %></td>
+        <td><%= link_to 'Destroy', hazard_symbol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hazard Symbol', new_hazard_symbol_path %>

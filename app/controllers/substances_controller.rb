@@ -32,6 +32,7 @@ class SubstancesController < ApplicationController
 
   def update
     @substance = Substance.update(params[:id], substance_params)
+    redirect_to root_path, notice: "Successfully updated Substance"
   end
 
   def destroy

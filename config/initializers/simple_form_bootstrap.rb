@@ -50,7 +50,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'control-label'
 
-    b.use :input, wrap_with: { tag: 'span' }
+    b.use :input
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
@@ -105,7 +105,6 @@ SimpleForm.setup do |config|
 
   config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
-    b.use :tooltip
     b.optional :readonly
 
     b.use :label, class: 'col-sm-3 control-label'
@@ -150,7 +149,6 @@ SimpleForm.setup do |config|
   # buttons and other elements.
   config.default_wrapper = :vertical_form
   config.wrapper_mappings = {
-    collection_check_boxes: :vertical_radio_and_checkboxes,
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
     file: :vertical_file_input,

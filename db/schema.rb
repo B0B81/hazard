@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314184348) do
+ActiveRecord::Schema.define(version: 20170323185821) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20170314184348) do
   create_table "dangersymbols_substances", id: false, force: :cascade do |t|
     t.integer "dangersymbol_id", null: false
     t.integer "substance_id",    null: false
+  end
+
+  create_table "hazard_symbols", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "code"
+  end
+
+  create_table "hazard_symbols_substances", id: false, force: :cascade do |t|
+    t.integer "hazard_symbol_id", null: false
+    t.integer "substance_id",     null: false
   end
 
   create_table "hphrases", force: :cascade do |t|
