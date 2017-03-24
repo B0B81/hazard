@@ -17,6 +17,14 @@
         %br
         = f.collection_check_boxes :hazard_symbol_ids, HazardSymbol.all, :id, :code do |b|
           = b.label(class: "check_box", title: b.object.code + ": " + b.object.description) { b.check_box + b.object.code + image_tag("hazard_img/" + b.object.image, size: "50x50") }
+      = f.input :pphrase_ids, :as => :check_boxes, label: "R-Sätze" do
+        %br
+        = f.collection_check_boxes :rphrase_ids, Rphrase.order(:title), :id, :title do |b|
+          = b.label(title: b.object.title + ": " + b.object.description) { b.check_box + b.text }
+      = f.input :ghs_symbol_ids, :as => :check_boxes, label: "GHS-Symbol" do
+        %br
+        = f.collection_check_boxes :ghs_symbol_ids, GhsSymbol.all, :id, :code do |b|
+          = b.label(class: "check_box", title: b.object.code + ": " + b.object.description) { b.check_box + image_tag("ghs_img/" + b.object.image, size: "50x50") }
       = f.input :signalword, input_html: { class: 'form-control' }
       = f.input :inhalation
       = f.input :pphrase_ids, :as => :check_boxes, label: "H-Sätze" do
@@ -27,8 +35,5 @@
         %br
         = f.collection_check_boxes :pphrase_ids, Pphrase.order(:title), :id, :title do |b|
           = b.label(title: b.object.title + ": " + b.object.description) { b.check_box + b.text }
-      = f.input :pphrase_ids, :as => :check_boxes, label: "P-Sätze" do
-        %br
-        = f.collection_check_boxes :rphrase_ids, Rphrase.order(:title), :id, :title do |b|
-          = b.label(title: b.object.title + ": " + b.object.description) { b.check_box + b.text }
+
       = f.button :submit, class: "btn btn-primary", tooltip: "H-Satz"

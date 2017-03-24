@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ghs Symbols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Handling</th>
+      <th>String</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ghs_symbols.each do |ghs_symbol| %>
+      <tr>
+        <td><%= ghs_symbol.title %></td>
+        <td><%= ghs_symbol.code %></td>
+        <td><%= ghs_symbol.description %></td>
+        <td><%= ghs_symbol.handling %></td>
+        <td><%= image_tag("ghs_img/" + ghs_symbol.image, size: "50x50") %></td>
+        <td><%= link_to 'Show', ghs_symbol %></td>
+        <td><%= link_to 'Edit', edit_ghs_symbol_path(ghs_symbol) %></td>
+        <td><%= link_to 'Destroy', ghs_symbol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ghs Symbol', new_ghs_symbol_path %>

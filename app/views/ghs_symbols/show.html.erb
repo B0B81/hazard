@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ghs_symbol.title %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @ghs_symbol.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ghs_symbol.description %>
+</p>
+
+<p>
+  <strong>Handling:</strong>
+  <%= @ghs_symbol.handling %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @ghs_symbol.image %>
+</p>
+
+<%= link_to 'Edit', edit_ghs_symbol_path(@ghs_symbol) %> |
+<%= link_to 'Back', ghs_symbols_path %>
