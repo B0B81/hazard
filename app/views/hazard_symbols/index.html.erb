@@ -19,7 +19,7 @@
         <td><%= hazard_symbol.title %></td>
         <td><%= hazard_symbol.code %></td>
         <td><%= hazard_symbol.description %></td>
-        <td><%= hazard_symbol.image %></td>
+        <td><%= image_tag("hazard_img/" + hazard_symbol.image, size: "50x50") %></td>
         <td><%= link_to 'Show', hazard_symbol %></td>
         <td><%= link_to 'Edit', edit_hazard_symbol_path(hazard_symbol) %></td>
         <td><%= link_to 'Destroy', hazard_symbol, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -47,7 +47,7 @@ private
   end
 
   def substance_params
-    params.require(:substance).permit(:title, :company_id, :date, :application, :protection_level, :signalword, :inhalation, hphrase_ids:[], pphrase_ids:[], rphrase_ids:[])
+    params.require(:substance).permit(:title, :company_id, :date, :application, :protection_level, :signalword, :inhalation, hphrase_ids:[], pphrase_ids:[], rphrase_ids:[], hazard_symbol_ids:[])
   end
 
 end

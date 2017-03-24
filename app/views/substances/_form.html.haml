@@ -16,7 +16,7 @@
       = f.input :hazard_symbol_ids, :as => :check_boxes, label: "Gefahrensymbol" do
         %br
         = f.collection_check_boxes :hazard_symbol_ids, HazardSymbol.all, :id, :code do |b|
-          = b.label(code: b.object.code + ": " + b.object.description) { b.check_box + b.text }
+          = b.label(class: "check_box", title: b.object.code + ": " + b.object.description) { b.check_box + b.object.code + image_tag("hazard_img/" + b.object.image, size: "50x50") }
       = f.input :signalword, input_html: { class: 'form-control' }
       = f.input :inhalation
       = f.input :pphrase_ids, :as => :check_boxes, label: "H-Sätze" do
