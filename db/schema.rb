@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324143425) do
+ActiveRecord::Schema.define(version: 20170324172330) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -100,13 +100,20 @@ ActiveRecord::Schema.define(version: 20170324143425) do
     t.integer  "company_id"
     t.date     "date"
     t.string   "application"
-    t.string   "protection_level"
+    t.string   "protectionlevel"
     t.string   "signalword"
     t.boolean  "inhalation"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
-    t.index ["company_id"], name: "index_substances_on_company_id"
+    t.boolean  "dermale"
+    t.string   "unnumber"
+    t.string   "hazardcode"
+    t.string   "classificationcode"
+    t.string   "packinggroup"
+    t.string   "hazardclass"
+    t.string   "transportcategory"
+    t.integer  "qmax"
   end
 
   create_table "users", force: :cascade do |t|
