@@ -1,20 +1,33 @@
-= form_tag(substances_path, method: :get) do
-  .row
-    .col-xs-3
-      .input-group
-        = text_field_tag :term, params[:term], placeholder: ('Search')+('...'), class: "form-control"
-        .input-group-btn
-          = button_tag 'Search', name: nil, class: "btn btn-default btn" do
-            %span.glyphicon.glyphicon-search
+.container-fluid
+  = form_tag(substances_path, method: :get) do
+    .row
+      .col-md-3
+        .input-group
+          = text_field_tag :term, params[:term], placeholder: ('Search')+('...'), class: "form-control"
+          .input-group-btn
+            = button_tag 'Search', name: nil, class: "btn btn-default btn" do
+              %span.glyphicon.glyphicon-search
+    %br
 
-%br/
-%table.table
-  %thead
-    %tr
-      %th title
-      %th company
-      %th date
-      %th application
-  %tbody
-    - @substance.each do |substance|
-      = render 'substance_row', substance: substance
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-body
+            %table.table
+              %thead
+                %tr
+                  %th.col-md-1 title
+                  %th.col-md-1  company
+                  %th date
+                  %th.col-md-2  application
+                  %th.col-md-1  hazard symbol
+                  %th.col-md-1  R-Phrase
+                  %th protectionlevel
+                  %th.col-md-1  GHS-Symbol
+                  %th signalword
+                  %th.col-md-1  H-Phrase
+                  %th.col-md-1  P-Phrase
+                  %th
+              %tbody
+                - @substance.each do |substance|
+                  = render 'substance_row', substance: substance

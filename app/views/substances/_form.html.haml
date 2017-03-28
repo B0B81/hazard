@@ -21,13 +21,13 @@
         .row
         = f.collection_check_boxes :rphrase_ids, Rphrase.order(:title), :id, :title do |b|
           = b.label(title: b.object.title + ": " + b.object.description) { b.check_box + b.text }
-      = f.input :protectionlevel, collection: ["I", "II", "III", "IV"], wrapper: :field2
+      = f.input :protectionlevel, collection: ["I", "II", "III", "IV"], :include_blank => "-", wrapper: :field2
+      = f.input :signalword, collection: ["Achtung", "Gefahr"], :include_blank => "-", wrapper: :field2
       .row
       = f.input :ghs_symbol_ids, :as => :check_boxes, wrapper: :field12, label: "GHS-Symbol" do
         .row
         = f.collection_check_boxes :ghs_symbol_ids, GhsSymbol.all, :id, :code do |b|
           = b.label(class: "check_box", title: b.object.code + ": " + b.object.description) { b.check_box + image_tag("ghs_img/" + b.object.image, size: "50x50") }
-      = f.input :signalword, wrapper: :field2
       = f.input :pphrase_ids, :as => :check_boxes, wrapper: :field12, label: "H-Sätze" do
         .row
         = f.collection_check_boxes :hphrase_ids, Hphrase.order(:title), :id, :title do |b|
@@ -45,8 +45,8 @@
       .row
       = f.input :unnumber, wrapper: :field2
       = f.input :classificationcode, wrapper: :field2
-      = f.input :packinggroup, collection: ["I", "II", "III"], wrapper: :field2
-      = f.input :transportcategory, collection: 1..3, wrapper: :field2
+      = f.input :packinggroup, collection: ["I", "II", "III"], :include_blank => "-", wrapper: :field2
+      = f.input :transportcategory, collection: 1..3, :include_blank => "-", wrapper: :field2
       = f.input :qmax, :as => :string, wrapper: :field2
       .row
       .col-md-4

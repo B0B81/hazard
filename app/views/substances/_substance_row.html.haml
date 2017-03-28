@@ -3,6 +3,14 @@
   %td= substance.company.name
   %td= substance.date
   %td= substance.application
+  %td= substance.hazard_symbols.collect { |hazard_symbol| image_tag("hazard_img/" + hazard_symbol.image, size: "25x25", :title => hazard_symbol.code + ": " + hazard_symbol.description)}.join("\n").html_safe
+  %td= substance.rphrases.collect {|rphrase| rphrase.title}.join ', '
+  %td= substance.protectionlevel
+  %td= substance.ghs_symbols.collect { |ghs_symbol| image_tag("ghs_img/" + ghs_symbol.image, size: "30x30", :title => ghs_symbol.code + ": " + ghs_symbol.description)}.join("\n").html_safe
+  %td= substance.signalword
+  %td= substance.hphrases.collect {|hphrase| hphrase.title}.join ', '
+  %td= substance.pphrases.collect {|pphrase| pphrase.title}.join ', '
   %td
-    = link_to t('edit'), edit_substance_path(substance), class: "btn btn-default btn-xs"
-    = link_to t('delete'), substance_path(substance), method: :delete, data: { confirm: t('are_you_sure') }, class: "btn btn-default btn-xs"
+    - if user_signed_in?
+      = link_to t('edit'), edit_substance_path(substance), class: "btn btn-default btn-xs"
+      = link_to t('delete'), substance_path(substance), method: :delete, data: { confirm: t('are_you_sure') }, class: "btn btn-default btn-xs"

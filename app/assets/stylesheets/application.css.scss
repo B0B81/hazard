@@ -25,6 +25,12 @@
 	box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
 }
 
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1200px;
+    }
+}
+
 $red: #DB6161;
 
 body {
