@@ -5,20 +5,8 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Paperclip:
+In development mode, you might add this line to config/environments/development.rb
+Paperclip.options[:command_path] = "/usr/local/bin/"
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Install ImageMagick: sudo apt-get install imagemagick -y

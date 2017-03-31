@@ -6,4 +6,7 @@ class Substance < ApplicationRecord
   has_and_belongs_to_many :hphrases
   has_and_belongs_to_many :pphrases
   has_and_belongs_to_many :rphrases
+
+  has_attached_file :datasheet, styles: { thumb: ["60x60#", :jpg] }
+  validates_attachment :datasheet, content_type: { content_type: "application/pdf" }
 end

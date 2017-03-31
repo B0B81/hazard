@@ -184,27 +184,13 @@ SimpleForm.setup do |config|
     ib.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
-  #Added custom input_group
-  config.wrappers :inline_input_group, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers "vertical_input_group#{col}".to_sym, tag: 'div', class: "form-group col-md-#{col}", error_class: 'has-error' do |b|
     b.use :html5
-    b.use :placeholder
-
-    b.wrapper tag: 'div' do |ba|
-      ba.wrapper tag: 'div', class: 'input-group' do |append|
-        append.use :input, class: 'form-control'
-      end
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrappers :vertical_input_group, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.use :placeholder
+    b.optional :placeholder
     b.use :label, class: 'control-label'
 
     b.wrapper tag: 'div' do |ba|
-      ba.wrapper tag: 'div', class: 'input-group col-sm-12' do |append|
+      ba.wrapper tag: 'div', class: 'input-group' do |append|
         append.use :input, class: 'form-control'
       end
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }

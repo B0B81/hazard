@@ -1,7 +1,7 @@
 %tr
   %td= substance.title
   %td= substance.company.name
-  %td= substance.date
+  %td= l substance.date
   %td= substance.application
   %td= substance.hazard_symbols.collect { |hazard_symbol| image_tag("hazard_img/" + hazard_symbol.image, size: "25x25", :title => hazard_symbol.code + ": " + hazard_symbol.description)}.join("\n").html_safe
   %td= substance.rphrases.collect {|rphrase| rphrase.title}.join ', '
@@ -11,6 +11,11 @@
   %td= substance.hphrases.collect {|hphrase| hphrase.title}.join ', '
   %td= substance.pphrases.collect {|pphrase| pphrase.title}.join ', '
   %td
+    - if substance.datasheet?
+      = link_to image_tag(substance.datasheet.url(:thumb)), substance.datasheet.url
+  %td
     - if user_signed_in?
-      = link_to t('edit'), edit_substance_path(substance), class: "btn btn-default btn-xs"
-      = link_to t('delete'), substance_path(substance), method: :delete, data: { confirm: t('are_you_sure') }, class: "btn btn-default btn-xs"
+      = link_to edit_substance_path(substance), class: "btn btn-default btn-xs" do
+        %span.glyphicon.glyphicon-pencil
+      = link_to substance_path(substance), method: :delete, data: { confirm: t('are_you_sure?') }, class: "btn btn-default btn-xs" do
+        %span.glyphicon.glyphicon-remove

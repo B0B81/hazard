@@ -1,4 +1,4 @@
-= simple_form_for @substance do |f|
+= simple_form_for @substance, :html => { :multipart => true } do |f|
   - if @substance.errors.any?
     #errors
       %p
@@ -9,9 +9,13 @@
           %li = msg
   .panel.panel-default
     .panel-body
-      = f.input :title, tooltip: "Gefahrstoffbezeichnung", wrapper: :field4
-      = f.association :company, required: false, include_blank: false, wrapper: :field4
-      = f.input :date, :as => :date_picker, wrapper: :field4
+      = f.input :title, wrapper_html: { title: 'Title' }, wrapper: :field4
+      = f.input :company, required: false, wrapper_html: { title: 'Company' }, wrapper: :vertical_input_group4 do
+        = f.association :company, label: false, include_blank: false, class: "form-control"
+        %span.input-group-btn
+          %button.btn.btn-default{:type => "button"}
+            %span.glyphicon.glyphicon-plus
+      = f.input :date, :as => :date_picker, wrapper_html: { title: 'Datum' }, wrapper: :field4
       = f.input :application, input_html: { class: 'form-control' }, wrapper_html: { title: 'application' }, wrapper: :field12
       = f.input :hazard_symbol_ids, :as => :check_boxes, wrapper: :field12, label: "Gefahrensymbol" do
         .row
@@ -21,8 +25,8 @@
         .row
         = f.collection_check_boxes :rphrase_ids, Rphrase.order(:title), :id, :title do |b|
           = b.label(title: b.object.title + ": " + b.object.description) { b.check_box + b.text }
-      = f.input :protectionlevel, collection: ["I", "II", "III", "IV"], :include_blank => "-", wrapper: :field2
-      = f.input :signalword, collection: ["Achtung", "Gefahr"], :include_blank => "-", wrapper: :field2
+      = f.input :protectionlevel, collection: ["I", "II", "III", "IV"], :include_blank => "-", wrapper_html: { title: 'protectionlevel' }, wrapper: :field2
+      = f.input :signalword, collection: ["Achtung", "Gefahr"], :include_blank => "-", wrapper_html: { title: 'signalword' }, wrapper: :field2
       .row
       = f.input :ghs_symbol_ids, :as => :check_boxes, wrapper: :field12, label: "GHS-Symbol" do
         .row
@@ -43,11 +47,20 @@
         = f.input :dermale
         %strong Angaben zum Transport
       .row
-      = f.input :unnumber, wrapper: :field2
-      = f.input :classificationcode, wrapper: :field2
+      = f.input :unnumber, wrapper_html: { title: 'UN-Number' }, wrapper: :field2
+      = f.input :classificationcode, wrapper_html: { title: 'classificationcode' }, wrapper: :field2
       = f.input :packinggroup, collection: ["I", "II", "III"], :include_blank => "-", wrapper: :field2
       = f.input :transportcategory, collection: 1..3, :include_blank => "-", wrapper: :field2
       = f.input :qmax, :as => :string, wrapper: :field2
+      .row
+      .col-md-4
+        %strong Sicherheitsdatenblatt
+        %br
+        -if @substance.datasheet?
+          = link_to image_tag(@substance.datasheet.url(:thumb), :title => "Sicherheitsdatenblatt"), @substance.datasheet.url, class: 'img-thumbnail'
+      .row
+      .form-group.col-md-4
+        = f.input :datasheet, as: :file, wrapper: :vertical_file_input
       .row
       .col-md-4
         = f.button :submit, class: "btn btn-primary", tooltip: "H-Satz"
