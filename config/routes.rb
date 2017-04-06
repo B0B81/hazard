@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :hphrases
   resources :pphrases
   resources :rphrases
+  get 'substance/update_companies', as: 'update_companies'
 
   root "substances#index"
 end

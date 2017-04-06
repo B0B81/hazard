@@ -1,0 +1,71 @@
+.container
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-6
+              %h1= @substance.title
+            .col-md-6
+              .text-right
+                = link_to "PDF", substance_path(@substance, :format => 'pdf'), class: "btn btn-default btn-xs"
+          .row
+            .col-md-6
+              %h2= @substance.company.name
+            .col-md-6
+              - @substance.hazard_symbols.each do |hazard_symbol|
+                %figure
+                  = image_tag("hazard_img/" + hazard_symbol.image, size: "50x50", :title => hazard_symbol.code + ": " + hazard_symbol.description)
+                  %figcaption
+                    = hazard_symbol.code
+          .row
+            .col-md-6
+              %h3= @substance.application
+            .col-md-6
+              = @substance.ghs_symbols.collect { |ghs_symbol| image_tag("ghs_img/" + ghs_symbol.image, size: "50x50", :title => ghs_symbol.code + ": " + ghs_symbol.description)}.join("\n").html_safe
+          .row
+            .col-md-6
+              - if @substance.rphrases.empty?
+                R-Sätze: -
+              - else
+                R-Sätze: #{@substance.rphrases.collect {|rphrase| rphrase.title}.join ', '}
+            .col-md-6
+          .row
+            .col-md-6
+              - if @substance.protectionlevel?
+                Sicherheitsstufe: #{@substance.protectionlevel}
+              -  else
+                Sicherheitsstufe: -
+            .col-md-6
+          .row
+            .col-md-6
+              - if @substance.signalword?
+                Signalwort: #{@substance.signalword}
+              - else
+                Singnalwort: -
+            .col-md-6
+          .row
+            .col-md-6
+              - if @substance.inhalation?
+                Inhalativ wirkend
+              - if @substance.dermale?
+                Dermal wirkend
+            .col-md-6
+          .row
+            .col-md-6
+              - if @substance.hphrases.empty?
+                H-Sätze: -
+          .row
+            .col-md-6
+              - if @substance.pphrases.empty?
+                P-Sätze: -
+              - else
+                P-Sätze: #{@substance.pphrases.collect {|pphrase| pphrase.title}.join ', '}
+            .col-md-6
+          .row
+            .col-md-6
+              - if @substance.datasheet?
+                Sicherheitsdatenblatt vom #{l @substance.date}:
+                %br
+                = link_to image_tag(@substance.datasheet.url(:thumb)), @substance.datasheet.url
+  = link_to "Home", root_path, class: "btn btn-default btn-xs"

@@ -41,6 +41,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'paperclip', '~> 5.1'
+gem 'prawn'
+gem 'prawn-svg', '~> 0.27.0'
+gem 'prawn-table'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

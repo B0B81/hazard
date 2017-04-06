@@ -2,13 +2,11 @@ class HazardSymbolsController < ApplicationController
   before_action :set_hazard_symbol, only: [:show, :edit, :update, :destroy]
 
   # GET /hazard_symbols
-  # GET /hazard_symbols.json
   def index
     @hazard_symbols = HazardSymbol.all
   end
 
   # GET /hazard_symbols/1
-  # GET /hazard_symbols/1.json
   def show
   end
 
@@ -26,38 +24,25 @@ class HazardSymbolsController < ApplicationController
   def create
     @hazard_symbol = HazardSymbol.new(hazard_symbol_params)
 
-    respond_to do |format|
-      if @hazard_symbol.save
-        format.html { redirect_to @hazard_symbol, notice: 'Hazard symbol was successfully created.' }
-        format.json { render :show, status: :created, location: @hazard_symbol }
-      else
-        format.html { render :new }
-        format.json { render json: @hazard_symbol.errors, status: :unprocessable_entity }
-      end
+    if @hazard_symbol.save
+      fredirect_to @hazard_symbol, notice: 'Hazard symbol was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /hazard_symbols/1
-  # PATCH/PUT /hazard_symbols/1.json
   def update
-    respond_to do |format|
-      if @hazard_symbol.update(hazard_symbol_params)
-        format.html { redirect_to @hazard_symbol, notice: 'Hazard symbol was successfully updated.' }
-        format.json { render :show, status: :ok, location: @hazard_symbol }
-      else
-        format.html { render :edit }
-        format.json { render json: @hazard_symbol.errors, status: :unprocessable_entity }
-      end
+    if @hazard_symbol.update(hazard_symbol_params)
+      redirect_to @hazard_symbol, notice: 'Hazard symbol was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /hazard_symbols/1
-  # DELETE /hazard_symbols/1.json
+
   def destroy
     @hazard_symbol.destroy
-    respond_to do |format|
-      format.html { redirect_to hazard_symbols_url, notice: 'Hazard symbol was successfully destroyed.' }
-      format.json { head :no_content }
+      redirect_to hazard_symbols_url, notice: 'Hazard symbol was successfully destroyed.'
     end
   end
 

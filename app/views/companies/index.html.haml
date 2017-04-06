@@ -1,0 +1,14 @@
+%p#notice= notice
+%h1 Companies
+%table
+  %thead
+    %tr
+      %th Company
+  %tbody
+    - @companies.each do |company|
+      %tr
+        %td= company.name
+        %td= link_to 'Edit', edit_company_path(company), remote: true, class: "btn btn-default btn-xs"
+        %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Company', new_company_path, remote: true, class: "btn btn-default btn-xs"

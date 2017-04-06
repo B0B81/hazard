@@ -88,3 +88,16 @@ body {
    cursor: inherit;
    display: block;
 }
+
+figure {
+    float: left;
+    display: inline-block;
+    margin: 3px;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+}
+
+figcaption {
+    text-align: center;
+}

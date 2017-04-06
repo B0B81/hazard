@@ -5,27 +5,23 @@ class CompaniesController < ApplicationController
     @companies = Company.all
   end
 
-
   def new
     @company = Company.new
+  end
+
+  def show
   end
 
   def edit
   end
 
   def create
-    @company = Company.new(company_params)
-
-    if @company.save
-      redirect_to @company, notice: 'Company was successfully created.'
-    else
-      render :new
-    end
+    @company = Company.create(company_params)
   end
 
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: 'Company was successfully updated.'
+      redirect_to companies_url, notice: 'Company was successfully updated.'
     else
       render :edit
     end
