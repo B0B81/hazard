@@ -1,6 +1,7 @@
 class SubstancesController < ApplicationController
-  before_action :find_substance, only: [:show, :print, :edit, :update, :destroy]
+  before_action :find_substance, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  after_action :verify_authorized, only: [:create, :update, :destroy]
 
   def index
     @substance = if params[:term]
@@ -27,8 +28,8 @@ class SubstancesController < ApplicationController
 
       pdf.define_grid(:columns => 4, :rows => 12, :gutter => 5)
       pdf.font_size = 12
-      pdf.stroke_axis
-      pdf.grid.show_all
+      # pdf.stroke_axis
+      # pdf.grid.show_all
 
       pdf.grid([0, 0], [0, 2]).bounding_box do
         pdf.text @substance.title, :size => 24
@@ -97,20 +98,6 @@ class SubstancesController < ApplicationController
     end
   end
 
-  def print
-    respond_to do |format|
-      format.html
-      format.pdf do
-      pdf = Prawn::Document.new
-      pdf.text 'Hello World'
-
-      send_data pdf.render
-      send_data pdf.render, type: "application/pdf",
-  	                        disposition: "inline"
-      end
-    end
-  end
-
   def new
     @substance = current_user.substances.build
   end
@@ -129,11 +116,13 @@ class SubstancesController < ApplicationController
   end
 
   def update
+    authorize @substance
     @substance = Substance.update(params[:id], substance_params)
     redirect_to root_path, notice: "Successfully updated Substance"
   end
 
   def destroy
+    authorize @substance
     @substance.destroy
     redirect_to root_path, notice: "Successfully deleted Substance"
   end

@@ -1,6 +1,21 @@
-<% if @contact.errors.blank? %>
+<% if @company.errors.blank? %>
+  /*
+  First append new company select options
+  */
+  $('#substance_company_id').append($('<option>', {
+    value: <%= @company.id %>,
+    text: '<%= @company.name %>'
+  }));
+  /*
+  Reorder Company selectbox
+  */
+  $('#substance_company_id').html( $('#substance_company_id'+" option").sort(function(a, b) {
+       return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+    }));
+  $('#substance_company_id').val(<%= @company.id %>);
+
+  alert('Company created');
   $('#company-modal').modal('hide');
 <% else %>
-  // TODO: show the errors in the UI
-  alert('Error');
+   alert('<%= @company.errors.full_messages[0] %>');
 <% end %>
