@@ -1,11 +1,15 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+substance_table = null
+
 $(document).on "turbolinks:load", ->
-  # alert "page has loaded!"
   $('body').tooltip selector: '[data-toggle~=\'tooltip\']'
-  $('#substance-table').DataTable
+  substance_table = $('#substance-table').DataTable
     searching: false
+    columnDefs: [
+      targets: [5, 7, 9, 10, 11, 12], orderable: false
+    ]
     language:
       decimal: ','
       sEmptyTable: 'Keine Daten in der Tabelle vorhanden'
@@ -27,3 +31,6 @@ $(document).on "turbolinks:load", ->
       oAria:
         sSortAscending:  ': aktivieren, um Spalte aufsteigend zu sortieren'
         sSortDescending: ': aktivieren, um Spalte absteigend zu sortieren'
+
+document.addEventListener  'turbolinks:before-cache', ->
+  substance_table.destroy()

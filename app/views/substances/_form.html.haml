@@ -1,4 +1,4 @@
-= simple_form_for @substance, :html => { :multipart => true } do |f|
+= simple_form_for @substance, validate: true, :html => { :multipart => true } do |f|
   - if @substance.errors.any?
     #errors
       %p

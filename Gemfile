@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 5.x
 gem 'haml', '~> 4.0', '>= 4.0.7'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'devise-i18n'
 gem 'simple_form', '~> 3.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
@@ -50,7 +50,11 @@ gem 'prawn-table'
 gem 'pundit'
 #Use Datatables
 gem 'jquery-datatables-rails', '~> 3.4'
-
+# Use clien-side-validation for validating
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+# Use premailer for E-Mail preview
+gem 'premailer-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

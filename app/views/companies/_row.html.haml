@@ -1,0 +1,4 @@
+%tr{:id => company.id}
+  %td= company.name
+  %td= link_to 'Edit', edit_company_path(company), remote: true, class: "btn btn-default btn-xs"
+  %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }

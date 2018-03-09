@@ -7,22 +7,26 @@
     = csrf_meta_tags
 
   %body
-    %nav.navbar.navbar-default
-      .container
-        .navbar-brand= link_to "Gefahrstoffliste", root_path
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          .navbar-brand= link_to "Gefahrstoffliste", root_path
 
-        - if user_signed_in?
-          %ul.nav.navbar-nav.navbar-right
-            %li= link_to "Neuer Gefahrstoff", new_substance_path
-            - if current_user.try(:admin?)
-              %li= link_to "Administration", users_path
-            %li= link_to t("Sign Out"), destroy_user_session_path, method: :delete
-        - else
-          %ul.nav.navbar-nav.navbar-right
-            -# = %li= link_to t("Sign Up"), new_user_registration_path
-            %li= link_to t("Sign In"), new_user_session_path
-    .container
-      -flash.each do |name, msg|
-        = content_tag :div, msg, class: "alert"
+          - if user_signed_in?
+            %ul.nav.navbar-nav.navbar-right
+              %li= link_to "Neuer Gefahrstoff", new_substance_path
+              - if current_user.try(:admin?)
+                %li= link_to "Administration", users_path
+              %li= link_to t("Sign Out"), destroy_user_session_path, method: :delete
+          - else
+            %ul.nav.navbar-nav.navbar-right
+              -# = %li= link_to t("Sign Up"), new_user_registration_path
+              %li= link_to t("Sign In"), new_user_session_path
+    .container-fluid
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+            = content_tag :div, msg, :id => "flash_#{name}"
 
     = yield

@@ -103,6 +103,7 @@ class SubstancesController < ApplicationController
   end
 
   def create
+    authorize Substance
     @substance = current_user.substances.build(substance_params)
 
     if @substance.save

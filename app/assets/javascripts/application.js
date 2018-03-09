@@ -23,5 +23,14 @@
 //= require pickers
 //= require dataTables/jquery.dataTables
 
-
 //= require_tree .
+
+window.ClientSideValidations.callbacks.element.fail = function(element, message, callback) {
+  $('.submit').prop("disabled",true);
+  callback();
+};
+
+window.ClientSideValidations.callbacks.element.pass = function(element, callback) {
+  $('.submit').prop("disabled",false);
+  callback();
+};
